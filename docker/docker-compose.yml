@@ -1,0 +1,14 @@
+version: '3.6'
+
+services:
+
+  srvdb:
+    image: postgres
+    container_name: srvdb
+    hostname: srvdb
+    environment:
+      POSTGRES_USER: B012022
+      POSTGRES_DB: inventory
+      POSTGRES_PASSWORD: 7Vm7$39TDfHyJ5h4&Mo0H
+    ports:
+      - 5432:5432
