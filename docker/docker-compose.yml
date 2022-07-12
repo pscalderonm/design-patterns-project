@@ -9,6 +9,6 @@ services:
     environment:
       POSTGRES_USER: B012022
       POSTGRES_DB: inventory
-      POSTGRES_PASSWORD: 7Vm7$39TDfHyJ5h4&Mo0H
+      POSTGRES_PASSWORD: inventory.123
     ports:
       - 5432:5432
