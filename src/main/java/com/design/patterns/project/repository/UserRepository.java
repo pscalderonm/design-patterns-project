@@ -24,4 +24,8 @@ public class UserRepository {
     public void save(User user){
         userCrudRepository.save(user);
     }
+
+    public void deleteByUsername(String username){
+        userCrudRepository.deleteByUsername(username);
+    }
 }

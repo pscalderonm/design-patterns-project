@@ -1,10 +1,12 @@
 package com.design.patterns.project.service.impl;
 
+import com.design.patterns.project.config.NonNullBeanProperties;
 import com.design.patterns.project.dto.RoleDTO;
 import com.design.patterns.project.dto.mapper.RoleMapper;
 import com.design.patterns.project.models.Role;
 import com.design.patterns.project.repository.RoleRepository;
 import com.design.patterns.project.service.RoleService;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +47,26 @@ public class RoleServiceImpl implements RoleService {
             log.error(e.getMessage());
             return false;
         }
+    }
 
+    @Override
+    public RoleDTO update(String roleName, RoleDTO role) {
+        try{
+            if(roleRepository.findByRole(roleName).isPresent()){
+                Role roleUpdate = roleRepository.findByRole(roleName).get();
+                Role roleRequest = roleMapper.toRole(role);
+
+                BeanUtilsBean beanUtils = new NonNullBeanProperties();
+                beanUtils.copyProperties(roleUpdate, roleRequest);
+                roleRepository.save(roleUpdate);
+                return roleMapper.toRoleDTO(roleUpdate);
+            }else{
+                throw new Exception("role not found");
+            }
+        }catch(Exception e){
+            log.error("rol can not update {}",e.getMessage());
+            return null;
+        }
     }
 
     @Override

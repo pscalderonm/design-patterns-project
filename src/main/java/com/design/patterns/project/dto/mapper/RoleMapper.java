@@ -20,6 +20,5 @@ public interface RoleMapper {
     List<RoleDTO> toRolesDTO(List<Role> roles);
 
     @InheritInverseConfiguration
-    @Mapping(target = "id", ignore = true)
     Role toRole(RoleDTO role);
 }

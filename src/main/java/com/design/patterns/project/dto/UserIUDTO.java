@@ -7,8 +7,8 @@ import lombok.Data;
 
 @Data
 @Builder
-@JsonDeserialize(builder = UserInsertDTO.UserInsertDTOBuilder.class)
-public class UserInsertDTO {
+@JsonDeserialize(builder = UserIUDTO.UserIUDTOBuilder.class)
+public class UserIUDTO {
 
     private String username;
 
@@ -17,7 +17,7 @@ public class UserInsertDTO {
     private String roleName;
 
     @JsonPOJOBuilder(withPrefix = "")
-    public static class UserInsertDTOBuilder{
+    public static class UserIUDTOBuilder{
 
     }
 }

@@ -10,6 +10,7 @@ import lombok.Data;
 @JsonDeserialize(builder = UserDTO.UserDTOBuilder.class)
 public class UserDTO {
 
+    private Integer id;
     private String username;
     private String password;
     private RoleDTO roleDTO;

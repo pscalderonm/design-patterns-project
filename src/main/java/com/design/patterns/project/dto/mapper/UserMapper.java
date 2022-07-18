@@ -1,7 +1,7 @@
 package com.design.patterns.project.dto.mapper;
 
 import com.design.patterns.project.dto.UserDTO;
-import com.design.patterns.project.dto.UserInsertDTO;
+import com.design.patterns.project.dto.UserIUDTO;
 import com.design.patterns.project.models.User;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -23,7 +23,10 @@ public interface UserMapper {
     List<UserDTO> toUsersDTO(List<User> users);
 
     @InheritInverseConfiguration
+    User toUserUpdate(UserDTO userDTO);
+
+    @InheritInverseConfiguration
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "role", ignore = true)
-    User toUser(UserInsertDTO userDTO);
+    User toUser(UserIUDTO userDTO);
 }

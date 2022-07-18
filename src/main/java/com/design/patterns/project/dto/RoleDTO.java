@@ -10,6 +10,8 @@ import lombok.Data;
 @JsonDeserialize(builder = RoleDTO.RoleDTOBuilder.class)
 public class RoleDTO {
 
+    private Integer id;
+
     private String name;
 
     private String description;
