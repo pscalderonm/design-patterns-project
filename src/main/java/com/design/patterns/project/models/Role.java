@@ -21,4 +21,5 @@ public class Role implements Serializable {
 
     @Column(name = "role_descrip")
     private String description;
+
 }
