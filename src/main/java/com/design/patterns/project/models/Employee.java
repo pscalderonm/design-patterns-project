@@ -19,6 +19,7 @@ public class Employee implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "emp_id")
     private Integer id;
 
     @NotNull(message = "El dni es requerido")
