@@ -19,6 +19,7 @@ public class Employee implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "emp_id")
     private Integer id;
 
     @NotNull(message = "El dni es requerido")
@@ -56,9 +57,11 @@ public class Employee implements Serializable {
     @Column(name = "emp_status_vac")
     private Boolean vaccineStatus;
 
+    /*
     @JsonManagedReference
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Dose> doses;
+    */
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "emp_usr_id", referencedColumnName = "usr_id")

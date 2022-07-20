@@ -33,4 +33,6 @@ public class Dose {
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Employee.class)
     @JoinColumn(name = "dose_emp_id", referencedColumnName = "emp_id")
     private Employee employee;
+
+
 }
