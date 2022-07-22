@@ -43,12 +43,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDTO findByEmployeeId(Integer employeeId) {
         return employeeMapper.toEmployeeDTO(employeeRepository.findByEmployeeId(employeeId).get());
     }
-/*
+
     @Override
     public EmployeeDTO findByEmployeeDNI(String employeeDNI) {
         return employeeMapper.toEmployeeDTO(employeeRepository.findByEmployeeDNI(employeeDNI));
     }
-*/
+
     @Override
     public boolean save(EmployeeIUDTO employeeIUDTO) {
         try {

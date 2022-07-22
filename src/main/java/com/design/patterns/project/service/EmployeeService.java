@@ -8,7 +8,7 @@ import java.util.List;
 public interface EmployeeService {
     List<EmployeeDTO> findAll();
     EmployeeDTO findByEmployeeId(Integer employeeId);
-    //EmployeeDTO findByEmployeeDNI(String employeeDNI);
+    EmployeeDTO findByEmployeeDNI(String employeeDNI);
     boolean save(EmployeeIUDTO employeeIUDTO);
     EmployeeDTO update(Integer employeeId, EmployeeIUDTO employeeIUDTO);
     boolean deleteByEmployeeId(Integer employeeId);

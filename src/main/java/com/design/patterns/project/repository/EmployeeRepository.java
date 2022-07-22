@@ -15,7 +15,7 @@ public class EmployeeRepository {
 
     public List<Employee> findAll() {return employeeCrudRepository.findAll(); }
 
-    //public Employee findByEmployeeDNI(String employeeDNI){ return employeeCrudRepository.findByEmployeeDNI(employeeDNI);}
+    public Employee findByEmployeeDNI(String employeeDNI){ return employeeCrudRepository.findByDni(employeeDNI);}
 
     public Optional<Employee> findByEmployeeId(Integer employeeId) {return employeeCrudRepository.findById(employeeId);}
 
