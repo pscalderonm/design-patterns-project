@@ -2,6 +2,7 @@ package com.design.patterns.project;
 
 
 import com.design.patterns.project.models.User;
+import com.design.patterns.project.repository.DoseRepository;
 import com.design.patterns.project.repository.RoleRepository;
 import com.design.patterns.project.repository.UserRepository;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
@@ -37,6 +38,11 @@ public class DesignPatternsProjectApplication implements ApplicationRunner {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private DoseRepository doseRepository;
+
+
+
     public static void main(String[] args) {
         SpringApplication.run(DesignPatternsProjectApplication.class, args);
     }
@@ -50,4 +56,5 @@ public class DesignPatternsProjectApplication implements ApplicationRunner {
         userRepository.save(user);
         log.info("User admin created: {}",user);
     }
+
 }

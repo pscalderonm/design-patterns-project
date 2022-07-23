@@ -12,3 +12,20 @@ services:
       POSTGRES_PASSWORD: inventory.123
     ports:
       - 5432:5432
+    networks:
+      - demo_kcs_net
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: info@jtux.ec
+      PGADMIN_DEFAULT_PASSWORD: clave
+    ports:
+      - 5050:80
+    depends_on:
+      - srvdb
+    networks:
+      - demo_kcs_net
+
+networks:
+  demo_kcs_net:

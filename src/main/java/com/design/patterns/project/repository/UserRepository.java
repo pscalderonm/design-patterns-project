@@ -13,9 +13,7 @@ public class UserRepository {
     @Autowired
     private UserCrudRepository userCrudRepository;
 
-    public List<User> findAll(){
-        return userCrudRepository.findAll();
-    }
+    public List<User> findAll(){ return userCrudRepository.findAll();     }
 
     public User findByUsername(String username){
         return userCrudRepository.findByUsername(username);
