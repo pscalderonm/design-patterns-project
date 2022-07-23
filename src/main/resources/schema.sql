@@ -49,7 +49,7 @@ create table t_doses(
     primary key ("dose_id"),
     constraint "fk_dose_employee"
         foreign key ("dose_emp_id")
-            references T_EMPLOYEES ("emp_id")
+            references t_employees ("emp_id")
     on delete no action
     on update no action
 );
