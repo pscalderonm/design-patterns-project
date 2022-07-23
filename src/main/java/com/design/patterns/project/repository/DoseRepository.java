@@ -25,9 +25,18 @@ public class DoseRepository {
         doseCrudRepository.save(dose);
     }
 
-    //public void deleteByEmployeeDoseNumber(String employee, Integer doseNumber){
-    //    doseCrudRepository.deleteByEmployeeDoseNumber(employee, doseNumber);
-    //}
+    public Optional<Dose> findById(Integer id) {
+        return doseCrudRepository.findById(id);
+    }
+
+
+    public List<Dose> findByDni(String employee_dni) {
+        return doseCrudRepository.findByEmployee_Dni(employee_dni);
+    }
+
+    public void deleteById(Integer dose_id){
+        doseCrudRepository.deleteById(dose_id);
+    }
 
 
 }

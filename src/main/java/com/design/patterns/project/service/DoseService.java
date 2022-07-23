@@ -3,7 +3,9 @@ package com.design.patterns.project.service;
 import com.design.patterns.project.constants.VaccineEnum;
 import com.design.patterns.project.dto.DoseDTO;
 import com.design.patterns.project.dto.DoseIUDTO;
+import com.design.patterns.project.models.Dose;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.List;
 
@@ -15,9 +17,11 @@ public interface DoseService {
 
     boolean save(DoseIUDTO doseIUDTO);
 
-    DoseDTO update(Integer doseNumber, Date doseDate, VaccineEnum vaccineEnum);
+    public Dose update(Integer id, DoseIUDTO dose) throws InvocationTargetException, IllegalAccessException;
 
-    //boolean deleteByEmployeeDoseNumber(String employee, Integer DoseNumber);
+    List<DoseDTO> findByDni(String employee_dni);
+
+    boolean deleteById(Integer dose_id);
 
 
 }

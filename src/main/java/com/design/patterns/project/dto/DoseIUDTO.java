@@ -17,6 +17,8 @@ public class DoseIUDTO {
     private Date doseDate;
     private VaccineEnum vaccineEnum;
 
+    private String employeeDni;
+
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class DoseIUDTOBuilder{

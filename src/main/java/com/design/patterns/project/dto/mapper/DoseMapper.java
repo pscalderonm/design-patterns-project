@@ -3,6 +3,7 @@ package com.design.patterns.project.dto.mapper;
 import com.design.patterns.project.dto.DoseDTO;
 import com.design.patterns.project.dto.DoseIUDTO;
 import com.design.patterns.project.models.Dose;
+import com.design.patterns.project.models.Employee;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -10,7 +11,7 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {EmployeeMapper.class})
 public interface DoseMapper {
 
     @Mappings({
