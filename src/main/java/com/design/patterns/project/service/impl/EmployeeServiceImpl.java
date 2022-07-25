@@ -4,6 +4,7 @@ import com.design.patterns.project.config.NonNullBeanProperties;
 import com.design.patterns.project.dto.EmployeeDTO;
 import com.design.patterns.project.dto.EmployeeIUDTO;
 import com.design.patterns.project.dto.mapper.EmployeeMapper;
+import com.design.patterns.project.events.EmployeeCreatedEvent;
 import com.design.patterns.project.models.Employee;
 import com.design.patterns.project.models.User;
 import com.design.patterns.project.repository.EmployeeRepository;
@@ -13,6 +14,7 @@ import org.apache.commons.beanutils.BeanUtilsBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ApplicationEventPublisher eventPublisher;
 
     @Override
     public List<EmployeeDTO> findAll() {
@@ -60,6 +65,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             user.setRole(roleRepository.findByRole("EMPLOYEE").get());
             employee.setUser(user);
             employeeRepository.save(employee);
+            eventPublisher.publishEvent(new EmployeeCreatedEvent(this, employee));
             return true;
         } catch(Exception e){
             log.error("error save employee" + e.getMessage());
@@ -89,7 +95,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public boolean deleteByEmployeeId(Integer employeeId) {
         try{
-            if(employeeRepository.findByEmployeeId(employeeId)!=null){
+            if(employeeRepository.findByEmployeeId(employeeId).isPresent()){
                 employeeRepository.deleteByEmployeeId(employeeId);
                 return true;
             }else{
