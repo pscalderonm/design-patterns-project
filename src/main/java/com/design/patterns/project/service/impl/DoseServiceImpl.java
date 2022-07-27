@@ -49,7 +49,8 @@ public class DoseServiceImpl implements DoseService {
         try{
             Dose dose = doseMapper.toDose(doseDTO);
             Employee employee = employeeRepository.findByEmployeeDNI(doseDTO.getEmployeeDni());
-
+            if(!employee.getVaccineStatus())
+                throw new Exception("El empleado no se encuentra con estado vacunado");
             dose.setEmployee(employee);
             doseRepository.save(dose);
             return true;

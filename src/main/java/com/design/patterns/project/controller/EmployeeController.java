@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class EmployeeController {
             @ApiResponse(responseCode = "500", description = "Internal server error", content = {@Content()})
     }
     )
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Response> findAll() {
         List<EmployeeDTO> employees = employeeServiceImpl.findAll();
         if(employees.isEmpty()){
@@ -57,6 +59,7 @@ public class EmployeeController {
             @ApiResponse(responseCode = "500", description = "Internal server error", content = {@Content()})
     }
     )
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Response> findById(@PathVariable Integer employeeId) {
         EmployeeDTO employee = employeeServiceImpl.findByEmployeeId(employeeId);
         if(employee == null){
@@ -99,6 +102,7 @@ public class EmployeeController {
             @ApiResponse(responseCode = "500", description = "Internal server error", content = {@Content()})
     }
     )
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Response> save(@RequestBody EmployeeIUDTO employeeIUDTO){
         boolean employee = employeeServiceImpl.save(employeeIUDTO);
         if(employee){
@@ -141,6 +145,7 @@ public class EmployeeController {
             @ApiResponse(responseCode = "500", description = "Internal server error", content = {@Content()})
     }
     )
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Response> delete(@PathVariable Integer employeeId){
         boolean employee = employeeServiceImpl.deleteByEmployeeId(employeeId);
         if(employee){

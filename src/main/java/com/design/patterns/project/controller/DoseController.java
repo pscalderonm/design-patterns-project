@@ -9,17 +9,20 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/dose")
+@RequestMapping("/doses")
+@SecurityRequirement(name = "basicAuth")
 public class DoseController {
 
     @Autowired
@@ -40,6 +43,7 @@ public class DoseController {
             @ApiResponse(responseCode = "500", description = "Internal server error", content = {@Content()})
     }
     )
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Response> findAll() {
         List<DoseDTO> dose = doseServiceImpl.findAll();
         if(dose.isEmpty()){
@@ -55,7 +59,7 @@ public class DoseController {
 
     @GetMapping("/{employee_dni}")
     @Operation(summary = "Returns a dose list")
-    public ResponseEntity<Response> findAll(@PathVariable String employee_dni) {
+    public ResponseEntity<Response> findByEmployeeDni(@PathVariable String employee_dni) {
         List<DoseDTO> dose = doseServiceImpl.findByDni(employee_dni);
         if(dose.isEmpty()){
             status = HttpStatus.BAD_REQUEST;
