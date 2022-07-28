@@ -42,7 +42,6 @@ public class DesignPatternsProjectApplication implements ApplicationRunner {
     private DoseRepository doseRepository;
 
 
-
     public static void main(String[] args) {
         SpringApplication.run(DesignPatternsProjectApplication.class, args);
     }
